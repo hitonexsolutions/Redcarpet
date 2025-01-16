@@ -25,11 +25,37 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
 
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body id="top">
 
 
+    <div class="video-bg">
+        <video autoplay muted loop>
+            <source src="videos/bg-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
     <!-- preloader
     ================================================== -->
     <div id="preloader">
@@ -60,12 +86,14 @@
         <!-- # intro 
         ================================================== -->
         <section id="intro" class="s-intro">
-
-            <div class="s-intro__bg"></div>
-
+            <div class="s-intro__bg">
+                <video class="s-intro__bg-video" autoplay muted loop>
+                    <source src="videos/bg-video.mp4" type="video/mp4">
+                </video>
+            </div>
+        
             <div class="row s-intro__content">
                 <div class="column lg-12">
-                    
                     <div class="counter">
                         <div class="counter__time">
                             <span id="days" class="ss-days">365</span>
@@ -83,29 +111,26 @@
                             <span id="seconds" class="ss-seconds">55</span>
                             <span>secs</span>
                         </div>
-                    </div>  <!-- end counter -->
-
+                    </div>
+        
                     <div class="s-intro__content-bottom">
                         <h1 class="s-intro__content-title">Our site is launching soon.</h1>
                         <p>
                             RedCarpet is gearing up to make your events extraordinary. Stay tuned—something amazing is coming soon!
                         </p>
                     </div>
-
                 </div>
-
+        
                 <div class="s-intro__scroll">
                     <p class="scroll-text">Reach You Soon...</p>
                     <a href="#info" class="smoothscroll">
                         <div class="mouse"></div>
                     </a>
                     <div class="end-top"></div>
-                </div> <!-- end s-intro__scroll -->
-
-            </div> <!-- intro__content -->
-
-        </section> <!-- end s-intro -->
-
+                </div>
+            </div>
+        </section>
+        
 
         <!-- # info
         ================================================== -->
@@ -122,8 +147,9 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Define a fixed target date and time (e.g., January 20, 2025, 12:00 PM)
-            const targetDate = new Date('2025-01-20T12:00:00Z');
+            // Calculate the target date (17 days from now)
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 17);
 
             function updateCountdown() {
                 const currentTime = new Date();
