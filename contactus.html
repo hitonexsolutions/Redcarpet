@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/vendor/jquery.fancybox.min.css">
     
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -478,7 +479,7 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-wizard">
-                <form action="" method="post" role="form">
+                <form  id="submit-form" action="" >
                   <div class="form-wizard-header">
                     <p>Fill all form field to go next step</p>
                     <ul class="list-unstyled form-wizard-steps clearfix">
@@ -490,18 +491,18 @@
                   <fieldset class="wizard-fieldset show">
                     <h5>Personal Information</h5>
                     <div class="form-group">
-                      <input type="text" class="form-control wizard-required" id="fname">
+                      <input type="text" class="form-control wizard-required" name="Name" id="fname">
                       <label for="fname" class="wizard-form-text-label">Name*</label>
                       <div class="wizard-form-error"></div>
                     </div>
-                    <div class="form-group" >
+                    <div class="form-group" name="Customer is a" >
                       <div style="color: white;">You Are* <br></div>
                       <div class="wizard-form-radio">
                         <input name="radio-name" id="Agency" type="radio">
                         <label for="radio1">Agency</label>
                       </div>
                       <div class="wizard-form-radio">
-                        <input name="radio-name" id="Exhibitor " type="radio">
+                        <input name="radio-name"  id="Exhibitor " type="radio">
                         <label for="radio2">Exhibitor </label>
                       </div><br>
                       <div class="wizard-form-radio">
@@ -514,12 +515,12 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control wizard-required" id="email">
+                      <input type="text" name="Email" class="form-control wizard-required" id="email">
                       <label for="email" class="wizard-form-text-label">Email*</label>
                       <div class="wizard-form-error"></div>
                     </div>
                     <div class="form-group">
-                      <input type="tel" class="form-control wizard-required" id="phone">
+                      <input type="tel" name="Phone" class="form-control wizard-required" id="phone">
                       <label for="phone" class="wizard-form-text-label">Phone Number*</label>
                       <div class="wizard-form-error"></div>
                     </div>
@@ -530,17 +531,17 @@
                   <fieldset class="wizard-fieldset">
                     <h5>Event Information</h5>
                     <div class="form-group">
-                      <input type="text" class="form-control wizard-required" id="event">
+                      <input type="text" name="Event Name" class="form-control wizard-required" id="event">
                       <label for="event" class="wizard-form-text-label">Event Name*</label>
                       <div class="wizard-form-error"></div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control wizard-required" placeholder="f.e. 2000 to 5000 (€/s)" id="budget">
-                      <label for="budget" class="wizard-form-text-label">Budget*</label>
+                      <input type="text" name="Budget" class="form-control wizard-required" placeholder="Budget* f.e. 2000 to 5000 (€/s)" id="budget">
+                      <label for="budget" class="wizard-form-text-label"></label>
                       <div class="wizard-form-error"></div>
                     </div>
                     <div class="row">
-                      <div class="col-12">Event
+                      <div class="col-12" name="Event Date" >Event
                          Date</div>
                       <div class="col-4">
                         <div class="form-group">
@@ -630,7 +631,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control wizard-required" placeholder="" id="meter">
+                      <input type="text" class="form-control wizard-required" name="Square Meters" placeholder="" id="meter">
                       <label for="meter" class="wizard-form-text-label">Square metres*</label>
                       <div class="wizard-form-error"></div>
                     </div>
@@ -641,7 +642,7 @@
                   </fieldset>	
                   <fieldset class="wizard-fieldset">
                     <h5>Final Touch!</h5>
-                    <div class="form-group">
+                    <div class="form-group" name="Where Find Redcarpet" >
                       <div style="color: white;">How did you find RedCarpet*</div><br>
                       <div class="wizard-form-radio">
                         <input name="radio-name" id="Recommendation" type="radio">
@@ -661,14 +662,14 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <textarea  class="form-control wizard-required" id="honame"></textarea>
+                      <textarea  class="form-control wizard-required" name="message" id="honame"></textarea>
                       <label for="honame" class="wizard-form-text-label">Your message *</label>
                       <div class="wizard-form-error"></div>
                     </div>
                     
                     <div class="form-group clearfix">
                       <a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>
-                      <a href="javascript:;" class="form-wizard-submit float-right">Submit</a>
+                      <input class="form-wizard-submit float-right"  type="submit" value="Submit">
                     </div>
                   </fieldset>	
                 </form>
@@ -721,6 +722,25 @@
 
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
+	   <script>
+        $("#submit-form").submit((e)=>{
+            e.preventDefault()
+            $.ajax({
+                url:"https://script.google.com/macros/s/AKfycby2nicJXssqZQtzpf4SPnxlVkK7-M0-vS40TZyEqwgiCwcs-SGzYSdSHG4atVZ3NZjt1A/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
+                success:function (response){
+                    alert("Form submitted successfully")
+                    window.location.reload()
+                    //window.location.href="https://google.com"
+                },
+                error:function (err){
+                    alert("Something Error")
+    
+                }
+            })
+        })
+    </script>
     <script>
       jQuery(document).ready(function() {
 	// click on next button
