@@ -720,13 +720,14 @@
       <div class="site-loader"></div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
 	   <script>
         $("#submit-form").submit((e)=>{
             e.preventDefault()
             $.ajax({
-                url:"https://script.google.com/macros/s/AKfycby2nicJXssqZQtzpf4SPnxlVkK7-M0-vS40TZyEqwgiCwcs-SGzYSdSHG4atVZ3NZjt1A/exec",
+                url:"https://script.google.com/macros/s/AKfycbw-bLuDGtu23QrzBku9F950wvvgPLff-YtL19GuEekWj-ynwaHQMCdsET3D23Fhm68k/exec",
                 data:$("#submit-form").serialize(),
                 method:"post",
                 success:function (response){
@@ -739,7 +740,7 @@
     
                 }
             })
-        })
+        })                                                                           
     </script>
     <script>
       jQuery(document).ready(function() {
